@@ -1,6 +1,10 @@
 [
     {
         "id": 332866,
-        "relativePathToArticle": "./blog-posts/creacion-de-un-crud-con-api-rest-en-nestjs-4ao3/creacion-de-un-crud-con-api-rest-en-nestjs-4ao3.md"
+        "relativePathToArticle": "./blog-posts/nestjs/creacion-de-un-crud-con-api-rest-en-nestjs-4ao3/creacion-de-un-crud-con-api-rest-en-nestjs-4ao3.md"
+    },
+    {
+        "id": 332856,
+        "relativePathToArticle": "./blog-posts/nestjs/calculo-de-la-cobertura-conjunta-unitarios-integracion-5eid/calculo-de-la-cobertura-conjunta-unitarios-integracion-5eid.md"
     }
 ]

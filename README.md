@@ -59,11 +59,3 @@ Then, you have to create a token on your dev.to account: https://dev.to/settings
 ## README template
 
 The following is simply a template that you may want to use for your own version of that repository.
-
-# \<YOUR NAME\>'s blog source
-
-https://dev.to/\<YOUR DEV.TO NICKNAME\>
-
-## Blog posts
-
-- [\<BLOG POST NAME\>](https://dev.to/\<BLOG POST LINK\>)
