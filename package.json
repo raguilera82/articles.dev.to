@@ -5,18 +5,9 @@
     "url": "https://github.com/raguilera82/articles.dev.to.git"
   },
   "scripts": {
-    "prettier": "prettier",
-    "embedme": "embedme blog-posts/**/*.md",
-    "prettier:base": "npm run prettier \"**/*.{js,json,scss,md,ts,html,component.html}\"",
-    "prettier:write": "npm run prettier:base --write",
-    "prettier:check": "npm run prettier:base --list-different",
-    "embedme:check": "npm run embedme --verify",
-    "embedme:write": "npm run embedme",
     "dev-to-git": "dev-to-git"
   },
   "dependencies": {
-    "dev-to-git": "1.1.0",
-    "embedme": "1.11.0",
-    "prettier": "1.18.2"
+    "dev-to-git": "1.1.0"
   }
 }
