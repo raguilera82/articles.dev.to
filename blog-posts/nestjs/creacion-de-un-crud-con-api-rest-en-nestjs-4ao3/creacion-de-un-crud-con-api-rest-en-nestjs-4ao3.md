@@ -11,10 +11,6 @@ canonical_url:
 [Código del tutorial: https://github.com/raguilera82/nestjs-workshop](https://github.com/raguilera82/nestjs-workshop)
 
 
-
-[TOC]
-
-
 Vamos a ir explicando los conceptos básicos de NestJS a través de la creación de un API REST para un CRUD de usuarios, la cual implementaremos en capas desacopladas que nos permitirán utilizar distintas tecnologías como Express en la parte del controlador; y Mongo u otra base de datos relacional, como PostgreSQL, en la parte de repositorio de datos.
 
 Partimos de que ya tenemos creado un proyecto con el CLI de NestJS llamado "rest-crud-users". Como en el caso de Angular el primer concepto que se nos presenta es el de módulo, ya que la aplicación de NestJS es obligatorio que tenga al menos un módulo principal.
