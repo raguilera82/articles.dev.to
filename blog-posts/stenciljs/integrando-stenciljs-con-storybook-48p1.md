@@ -74,8 +74,8 @@ $> npm run storybook
 
 De esta forma se nos abrirá el navegador mostrando la herramienta Storybook mostrando nuestro componente por defecto
 
-![image-20200606223552738](assets/storybook.png)
+![Detalle de Storybook](./assets/storybook.png)
 
 Y si pinchamos en la pestaña "Notes" podemos ver la documentación generada por StencilJs desde el propio Storybook, lo que lo que hace que sea una herramienta ideal como showcase de la librería de componentes.
 
-![image-20200606223911394](assets/notes.png)
+![Detalle de notes de Storybook](./assets/notes.png)

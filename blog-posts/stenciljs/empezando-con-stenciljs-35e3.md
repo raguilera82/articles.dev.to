@@ -90,7 +90,7 @@ $> npm run start
 ```
 En pocos segundos se abre el navegador ofreciendo la visualización del componente por defecto que viene en la instalación, el cual es invocado desde el fichero index.html
 
-![](assets/start.png)
+![Navegador mostrando componente inicial](./assets/start.png)
 
 El componente que ves renderizado por pantalla está dentro de la carpeta src/components, y es en esta carpeta donde tienen que estar todos los componentes de nuestra librería.
 
@@ -98,7 +98,7 @@ El componente que ves renderizado por pantalla está dentro de la carpeta src/co
 
 Aquí vemos la estructura de ficheros que nos crea por componente:
 
-![](assets/folder-components.png)
+![Estructura de ficheros de un componente](./assets/folder-components.png)
 
 * **my-components.css**: es el fichero donde va residir el estilo del componente.
 * **my-component.e2e.ts**: es el fichero que implementa el test E2E del componente.
