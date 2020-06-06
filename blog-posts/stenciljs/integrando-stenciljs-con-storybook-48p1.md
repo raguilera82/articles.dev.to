@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "Integrando StencilJS con Storybook"
 cover_image: 
 description: 

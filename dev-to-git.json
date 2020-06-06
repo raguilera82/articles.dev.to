@@ -10,5 +10,9 @@
     {
         "id": 350540,
         "relativePathToArticle": "./blog-posts/stenciljs/empezando-con-stenciljs-35e3.md"
+    },
+    {
+        "id": 350541,
+        "relativePathToArticle": "./blog-posts/stenciljs/integrando-stenciljs-con-storybook-48p1.md"
     }
 ]
