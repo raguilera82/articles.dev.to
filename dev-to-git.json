@@ -1,11 +1,11 @@
 [
     {
         "id": 332866,
-        "relativePathToArticle": "./blog-posts/nestjs/creacion-de-un-crud-con-api-rest-en-nestjs-4ao3/creacion-de-un-crud-con-api-rest-en-nestjs-4ao3.md"
+        "relativePathToArticle": "./blog-posts/nestjs/creacion-de-un-crud-con-api-rest-en-nestjs-4ao3.md"
     },
     {
         "id": 332856,
-        "relativePathToArticle": "./blog-posts/nestjs/calculo-de-la-cobertura-conjunta-unitarios-integracion-5eid/calculo-de-la-cobertura-conjunta-unitarios-integracion-5eid.md"
+        "relativePathToArticle": "./blog-posts/nestjs/calculo-de-la-cobertura-conjunta-unitarios-integracion-5eid.md"
     },
     {
         "id": 350540,
@@ -14,5 +14,9 @@
     {
         "id": 350541,
         "relativePathToArticle": "./blog-posts/stenciljs/integrando-stenciljs-con-storybook-48p1.md"
+    },
+    {
+        "id": 352832,
+        "relativePathToArticle": "./blog-posts/nestjs/integrar-typeorm-migrations-93j.md"
     }
 ]
