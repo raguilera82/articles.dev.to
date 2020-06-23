@@ -60,13 +60,13 @@ $> npm run open
 
 Este comando nos abre una ventana donde indica que se han creado una estructura de directorios para gestionar los tests que se implementen con Cypress en el proyecto.
 
-![cypress-1](assets/cypress-1.png)
+![cypress-1](./assets/cypress-1.png)
 
 Si pinchamos en "Ok, got it", podemos ver que aparece un árbol con un nodo "examples" y un montón de archivos de ejemplo listos para ejecutar simplemente pinchando sobre ellos.
 
 En la derecha tenemos la posibilidad de elegir donde queremos ejecutar los tests: Chrome, Firefox o Electron y justo debajo un botón "Run all specs" para ejecutar todos los tests implementados en bateria sobre la ventana en la que estás interactuando.
 
-![cypress-2](assets/cypress-2.png)
+![cypress-2](./assets/cypress-2.png)
 
 Si es la primera vez que estás con este tipo de tecnologías, pulsa sobre el botón "Run all specs" y déjate sorprender. ;-)
 
@@ -84,7 +84,7 @@ Verás que es este caso el navegador es Electron y esto es una ventaja ya que no
 
 Otro detalle que podrás comprobar es que se está almacenando un vídeo con la ejecución del tests (esto se puede configurar si no se quiere) y podemos obtener un reporte pon consola como el que se muestra en la imagen:
 
-![cypress-3](assets/cypress-3.png)
+![cypress-3](./assets/cypress-3.png)
 
 # Creación de nuestro primer test
 
@@ -110,17 +110,17 @@ $> npm run open
 
 Vemos que la herramienta se abre y que solo aparece nuestro test, pinchamos sobre él y vemos que se abre una instancia de Chrome que ejecuta el tests y nos deja alojados en la página de Google.
 
-![cypress-4](assets/cypress-4.png)
+![cypress-4](./assets/cypress-4.png)
 
 El test va a consistir en simular el comportamiento de un usuari@ que vaya a realizar una búsqueda de la palabra Cypress en el buscador de Google. Por tanto, tenemos que simular que llegamos a la página de Google, escribimos sobre el campo de texto y pulsamos sobre la opción "Cypress" para mostrar los resultados de la búsqueda.
 
 Pero, ¿cómo hacemos esto? ¿cómo sabemos con qué elementos del DOM tenemos que interacturar? ¿tenemos que mirar todo el código fuente? La respuesta a estas preguntas las da la propia herramienta de Cypress pinchando sobre el icono que hay a la izquierda la barra de navegación
 
-![cypress-5](assets/cypress-5.png)
+![cypress-5](./assets/cypress-5.png)
 
 Al pinchar sobre él se abre una barra de herramientas que nos permite identificar los elementos (1) de la página simplemente situándonos encima de ellos, y desde el botón de copy (2) ya nos da el comando que tenemos que utilizar en el tests para poder interacturar con ese elemento.
 
-![cypress-6](assets/cypress-6.png)
+![cypress-6](./assets/cypress-6.png)
 
 Con esta herramienta podemos localizar los elementos en la página. En nuestro caso el campo de texto y el botón de "Buscar en Google" e interactuar con ellos desde el test con este código:
 
