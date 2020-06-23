@@ -18,5 +18,9 @@
     {
         "id": 352832,
         "relativePathToArticle": "./blog-posts/nestjs/integrar-typeorm-migrations-93j.md"
+    },
+    {
+        "id": 353674,
+        "relativePathToArticle": "./blog-posts/cypress/empezando-con-cypress-2egi.md"
     }
 ]
