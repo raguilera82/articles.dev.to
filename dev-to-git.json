@@ -22,5 +22,13 @@
     {
         "id": 353674,
         "relativePathToArticle": "./blog-posts/cypress/empezando-con-cypress-2egi.md"
+    },
+    {
+        "id": 369482,
+        "relativePathToArticle": "./blog-posts/mongodb/empezando-con-mongodb-442i.md"
+    },
+    {
+        "id": 369518,
+        "relativePathToArticle": "./blog-posts/mongodb/instancia-de-mongodb-en-la-nube-gratis-3cai.md"
     }
 ]
