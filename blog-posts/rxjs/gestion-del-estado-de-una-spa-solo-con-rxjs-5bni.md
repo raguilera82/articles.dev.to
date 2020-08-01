@@ -97,6 +97,37 @@ export class LoadingStore extends Store<boolean> {
 }
 ```
 
+Y el test unitario asociado también queda muy sencillo al estar desacoplado del resto de la aplicación.
+
+```ts
+import { LoadingStore } from "./loading-store";
+
+describe('Loading Store', () => {
+
+    let loadingStore: LoadingStore = null;
+
+    beforeEach(() => {
+        loadingStore = LoadingStore.getInstance();
+    })
+
+
+    it('loading show', () => {
+        
+        loadingStore.show();
+
+        expect(loadingStore.get()).toBe(true);
+    })
+
+    it('loading hide', () => {
+        
+        loadingStore.hide();
+
+        expect(loadingStore.get()).toBe(false);
+    })
+
+})
+```
+
 Como ves creamos un método público show() para guardar un valor true en el estado cuando queremos que se muestre el componente de loading y un método público hide() cuando queremos que se oculte; los cuales pueden ser llamados desde cualquier parte de la SPA.
 
 Del otro extremo vamos a tener un componente que se va a suscribir al estado a través del método get$(), por ejemplo, en Angular se haría de esta forma:
@@ -107,7 +138,7 @@ export class LoadingComponent implements OnInit {
     loading: boolean;
 
     ngOnInit() {
-        const loadingStore = new LoadingStore();
+        const loadingStore = LoadingStore.getInstance();
         loadingStore.get$().subscribe(value => this.loading = value)
     }
 
