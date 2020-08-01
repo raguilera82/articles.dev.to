@@ -65,7 +65,7 @@ Para este caso solo queremos manejar un estado donde a través de un boolean pod
 
 Entonces creamos una clase pura en TypeScript, es importante que no tenga nada que la relacione con la tecnología que estemos utilizando, por ejemplo, si es Angular no podrá anotarse con @Injectable({provideIn: 'root'}) para no casarlo a ninguna tecnología en concreto.
 
-También podemos hacer que el servicio tenga una única instancia con el patrón Singleton, de forma que estaremos compartiendo el estado gestionado en un único sitio para toda la aplicación, lo que en Angular se conseguiría con el ya mencionado @Injectable({provideId: 'root'})
+También podemos hacer que el servicio tenga una única instancia con el patrón Singleton, de forma que estaremos compartiendo el estado gestionado en un único sitio para toda la aplicación, lo que en Angular se conseguiría con el ya mencionado @Injectable({provideIn: 'root'})
 
 ```ts
 import { Store } from './../store';
