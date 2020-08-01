@@ -38,5 +38,9 @@
     {
         "id": 413324,
         "relativePathToArticle": "./blog-posts/dart/empezando-con-dart-3485.md"
+    },
+    {
+        "id": 415598,
+        "relativePathToArticle": "./blog-posts/rxjs/gestion-del-estado-de-una-spa-solo-con-rxjs-5bni.md"
     }
 ]
