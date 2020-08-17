@@ -46,5 +46,9 @@
     {
         "id": 422349,
         "relativePathToArticle": "./blog-posts/rxjs/implementacion-de-un-crud-generico-con-rxjs-2fko.md"
+    },
+    {
+        "id": 430254,
+        "relativePathToArticle": "./blog-posts/nestjs/creacion-de-un-custom-pipe-para-validar-contra-un-servicio-4bdi.md"
     }
 ]
