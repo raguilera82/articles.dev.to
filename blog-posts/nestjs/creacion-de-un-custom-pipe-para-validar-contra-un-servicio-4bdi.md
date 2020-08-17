@@ -73,7 +73,7 @@ Como ves la implementación es muy sencilla. Ahora viene la segunda parte y dond
 
 Para hacer uso del custom pipe tenemos que anotar el método del controlador con @UsePipes y declarar la clase que acabamos de implementar, el caso es que en la documentación tenemos este ejemplo:
 
-```
+```ts
 @Post()
 @UsePipes(new JoiValidationPipe(createCatSchema))
 async create(@Body() createCatDto: CreateCatDto) {
@@ -110,4 +110,4 @@ Otro detalle es que haciéndolo a nivel de método, si tenemos más de un parám
 getDogById(@Param('id', ValIdDogPipe) id: string) {
   ...
 }
-``
+```
