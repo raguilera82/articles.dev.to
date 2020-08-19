@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: "Creación de un Custom Pipe para validar contra un servicio en NestJS"
 cover_image: 
 description: 
@@ -67,7 +67,9 @@ export class ValIdDogPipe implements PipeTransform {
 }
 ```
 
-> En el ejemplo estoy inyectando directamente el repository para dejar claro que hace una consulta a base de datos, pero lo normal es que la llamada a base de datos se haga a través de un servicio de negocio o por QueryBus si se está utilizando el módulo de CQRS.
+En el ejemplo estoy inyectando directamente el repository para dejar claro que hace una consulta a base de datos, pero lo normal es que la llamada a base de datos se haga a través de un servicio de negocio o por QueryBus si se está utilizando el módulo de CQRS. 
+
+El argumento "metadata" nos ofrece información de contexto como la anotación y el nombre de parámetro que se ha utilizado, que nos puede ser útil, para aplicar una lógica u otra.
 
 Como ves la implementación es muy sencilla. Ahora viene la segunda parte y donde digo que la documentación de NestJS puede llevarnos a equivoco: el momento de hacer uso del custom pipe en el controlador.
 
@@ -108,6 +110,6 @@ Otro detalle es que haciéndolo a nivel de método, si tenemos más de un parám
 ```ts
 @Get(/dogs/:id)
 getDogById(@Param('id', ValIdDogPipe) id: string) {
-  ...
+  //Code
 }
 ```
