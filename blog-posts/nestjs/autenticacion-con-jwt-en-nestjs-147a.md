@@ -344,66 +344,17 @@ export class UsersController {
 }
 ```
 
-De esta forma los endpoints solo se pueden ejecutar cuando son llamados con un token válido. Ahora vamos a evitar tener que pasar el id por parámetro, recuperándolo del token. Para lo que en vez de recuperarlo de la URL lo vamos a hacer de la request donde el método validate del JwtStrategy ha dejado los datos devueltos en una propiedad que podemos consultar llamada "user".
+De esta forma los endpoints solo se pueden ejecutar cuando son llamados con un token válido. Ahora vamos a evitar que en el endpoint de recuperar los datos por id tengamos que pasar el id por parámetro, recuperándolo del token. Para lo que en vez de recuperarlo de la URL lo vamos a hacer de la request donde el método validate del JwtStrategy ha dejado los datos devueltos en una propiedad que podemos consultar llamada "user".
 
 De forma que el controlador quedaría de esta forma:
 
 ```ts
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Post,
-  Put,
-  Request,
-  UseGuards,
-} from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { ApiBearerAuth } from '@nestjs/swagger';
-import { UserDTO } from './user.dto';
-import { UsersService } from './users.service';
-
-@Controller('users')
-export class UsersController {
-  constructor(private usersService: UsersService) {}
-
-  @Get()
-  async getAllUsers(): Promise<UserDTO[]> {
-    return await this.usersService.getAllUsers();
-  }
-
-  @Get('/me')
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
-  async getUserById(@Request() req: any): Promise<UserDTO> {
-    const { id } = req.user;
-    return await this.usersService.getUserById(id);
-  }
-
-  @Post()
-  async newUser(@Body() user: UserDTO): Promise<UserDTO> {
-    return await this.usersService.newUser(user);
-  }
-
-  @Put()
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
-  async updateUser(
-    @Request() req: any,
-    @Body() user: UserDTO
-  ): Promise<UserDTO> {
-    const { id } = req.user;
-    return await this.usersService.updateUser(id, user);
-  }
-
-  @Delete()
-  @ApiBearerAuth()
-  @UseGuards(AuthGuard('jwt'))
-  async deleteUser(@Request() req: any): Promise<void> {
-    const { id } = req.user;
-    return await this.usersService.deleteUser(id);
-  }
+@Get('/me')
+@ApiBearerAuth()
+@UseGuards(AuthGuard('jwt'))
+async getUserById(@Request() req: any): Promise<UserDTO> {
+  const { id } = req.user;
+  return await this.usersService.getUserById(id);
 }
 ```
 
@@ -439,3 +390,5 @@ async getUserById(@Auth() { id }: UserDTO): Promise<UserDTO> {
     return await this.usersService.getUserById(id);
 }
 ```
+
+Ahora nos podemos encontrar con el caso en el que queremos que una persona con un rol de administrador pueda hacer cualquier tipo de operación con cualquier usuario como actualizar sus datos o borrar el usuario.
