@@ -54,5 +54,13 @@
   {
     "id": 452758,
     "relativePathToArticle": "./blog-posts/nestjs/autenticacion-con-jwt-en-nestjs-147a.md"
+  },
+  {
+    "id": 464901,
+    "relativePathToArticle": "./blog-posts/nestjs/autorizacion-con-roles-en-nestjs-3pkn.md"
+  },
+  {
+    "id": 497504,
+    "relativePathToArticle": "./blog-posts/cypress/ejecutar-test-e2e-en-angular-con-cypress-y-calcular-cobertura-g31.md"
   }
 ]
