@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 title: 'Ejecutar test e2e en Angular con Cypress y calcular cobertura'
 cover_image:
 description:
