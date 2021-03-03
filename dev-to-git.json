@@ -62,5 +62,9 @@
   {
     "id": 497504,
     "relativePathToArticle": "./blog-posts/cypress/ejecutar-test-e2e-en-angular-con-cypress-y-calcular-cobertura-g31.md"
+  },
+  {
+    "id": 624344,
+    "relativePathToArticle": "./blog-posts/rxjs/anadir-soporte-de-devtools-f2i.md"
   }
 ]
