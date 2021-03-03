@@ -8,24 +8,24 @@ series: rxjs
 canonical_url:
 ---
 
-# Resumen
+## Resumen
 
 En este tutorial vamos a ver cómo integrar nuestra solución de gestión de estado con las DevTools del navegador para poder depurar nuestras aplicaciones de la forma más cómoda.
 
-# Entorno
+## Entorno
 
-* Slimbook Prox15 32 Gb RAM i7 
+* Slimbook Prox15 32 Gb RAM i7
 * SlimbookOS (Ubuntu 20.04)
 * RxJS 6.6.2
 * Visual Studio Code
 
-# Introducción
+## Introducción
 
 Seguro que a poco que hayas visto algo de Redux y todas sus variantes en los frameworks de turno, te habrá llamado la atención su integración con las DevTools de Chrome donde se puede ver en todo momento una foto del estado, las acciones que se han producido y "viajar" entre ellas.
 
 Así que vamos a ver cómo conseguir esto sin recurrir a ninguna librería, solo nuestro proyecto de gestión de estado con RxJS.
 
-# Vamos al lío
+## Vamos al lío
 
 Lo primero que vamos a hacer es instalar la siguiente extensión de Chrome que nos añadirá una nueva pestaña llamada "Redux" en las Developer Tools. Esto es tan sencillo como ir a la [URL](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=es) y pulsar en instalar.
 
@@ -89,6 +89,10 @@ Este será el nombre que veremos en la extensión de Redux cuando nuestra aplica
 
 ![dev-tools](./assets/dev-tools.png)
 
-# Conclusiones
+## Conclusiones
 
-Como ves podemos implementar una solución más sencilla y sobre todo universal, sin perder las ventajas de otras tecnologías más complejas (y completas) como NgRx, Vuex, etc... 
+Como ves podemos implementar una solución más sencilla y sobre todo universal, sin perder las ventajas de otras tecnologías más complejas (y completas) como NgRx, Vuex, etc...
+
+Notarás que la extensión muestra los cambios de estado por aplicación como si solo hubiese un store, esto es porque Redux funciona solo con un store. En nuestro caso creamos múltiples stores por lo que realmente la extensión solo nos vale para saber las acciones que se han ejecutado y el orden de ejecución.
+
+La ventaja es que no trabajamos con reducers y nos ahorramos la típica estructura switch con todas las acciones y su lógica asociada.
