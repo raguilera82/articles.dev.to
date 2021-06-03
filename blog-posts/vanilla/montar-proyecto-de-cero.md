@@ -1,5 +1,7 @@
 # Montar proyecto de cero con VanillaJS
 
+[TOC]
+
 ## Introducción
 
 En un mundo frontend dominado actualmente por los tres frameworks: React, Angular y Vue; es importante no perder las bases y ver que nada es magia y que todo se puede hacer con VanillaJS.
@@ -13,8 +15,8 @@ Partimos de que nuestra máquina de desarrollo cuenta con un runtime de NodeJS y
 Así que lo primero será abrir la terminal y crear el directorio donde vamos a empezar nuestro proyecto de cero.
 
 ```bash
-$> mkdir /path/project
-$> cd /path/project
+$> mkdir /path/vanilla-starter
+$> cd /path/vanilla-starter
 ```
 
 Ahora para inicializar el proyecto hacemos uso del comando init de npm, y con el modificador -y aceptamos todos los valores por defecto:
@@ -63,59 +65,60 @@ import './main.css';
 console.log('Vanilla');
 ```
 
-Directamente podemos abrir el fichero "index.html" en un navegador y ver que efectivamente se aplica la regla de CSS y se muestra el mensaje en consola.
-
 ## Añadimos webpack al proyecto
 
-A fin de que nuestro proyecto sea una SPA y para realizar todas las operaciones necesarias para su puesta en producción como minificado, refresco automático y otras tareas, vamos a incluir webpack como dependencia de desarrollo del proyecto.
+A fin de que nuestro proyecto sea una SPA y para realizar todas las operaciones necesarias para su puesta en producción como minificado, tener refresco automático en desarrollo y otras tareas, vamos a incluir webpack como dependencia de desarrollo del proyecto.
 
 ```bash
-$> npm install webpack webpack-cli --save-dev
-$> npm install webpack-cli --save-dev
-$> npm install webpack-dev-server --save-dev
-$> npm install webpack-merge --save-dev
+$> npm install webpack webpack-cli webpack-dev-server webpack-merge --save-dev
 ```
 
 Instalamos también todos los plugins de webpack que inicialmente vamos a utilizar en nuestro proyecto:
 
 ```bash
-$> npm install --save-dev html-webpack-plugin
-$> npm install --save-dev mini-css-extract-plugin
-$> npm install --save-dev css-loader
-$> npm install --save-dev style-loader
-$> npm install --save-dev html-loader
+$> npm install html-webpack-plugin mini-css-extract-plugin css-loader style-loader html-loader @babel/core @babel/preset-env babel-loader --save-dev
 ```
 
-Ahora en el raíz del proyecto vamos a crear un fichero llamado "webpack.common.js" donde vamos a incluir todos los comportamientos que queremos que webpack nos ejecute independiente del entorno sea de desarrollo o de producción.
+Ahora en el raíz del proyecto vamos a crear un fichero llamado "webpack.common.js" donde vamos a incluir todos los comportamientos que queremos que webpack nos ejecute independiente de que el entorno sea de desarrollo o de producción.
 
 ```javascript
 const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entry: './src/main.js',
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js',
-    clean: true
-  },
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: ['style-loader', 'css-loader']
-      },
-      {
-        test: /\.html$/i,
-        loader: 'html-loader' 
-      }
+    entry: './src/main.js',
+    output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js',
+        clean: true
+    },
+    module: {
+        rules: [
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+            },
+            {
+                test: /\.html$/i,
+                loader: 'html-loader'
+            },
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            }
+        ]
+    },
+    plugins: [
+        new HTMLWebpackPlugin({
+            template: './src/index.html'
+        })
     ]
-  },
-  plugins: [
-    new HTMLWebpackPlugin({
-      template: './src/index.html'
-    })
-  ]
 };
 ```
 
@@ -131,12 +134,13 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   target: 'web',
   devServer: {
-    contentBase: './dist'
+    contentBase: './dist',
+    historyApiFallback: true //Evita GET /page not found
   }
 });
 ```
 
-Y otro con la configuración para producción:
+Y otro con la configuración para producción, llamado webpack.prod.js:
 
 ```javascript
 const { merge } = require('webpack-merge');
@@ -159,23 +163,56 @@ module.exports = merge(common, {
 });
 ```
 
-Añadimos los siguientes scripts al fichero package.json:
+Añadimos los siguientes scripts al fichero package.json, también le vamos a añadir la configuración de browserlist para que la usen las herramientas compatibles como babel-preset-env:
 
 ```javascript
 "scripts": {
     "start": "webpack serve --config=webpack.dev.js",
     "build": "webpack --config=webpack.prod.js"
 },
+"browserslist": [
+    "defaults",
+    "not IE 11"
+],
 ```
 
 De forma que cuando estamos desarrollando utilizamos la configuración de desarrollo y cuando construimos el bundle lo hacemos con la configuración para producción.
 
-## Configuración de pruebas automáticas
-
-A fin de poder ejecutar pruebas automáticas en el proyecto, añadimos la dependencia de Jest:
+Para comprobar que la configuración es la correcta podemos arrancar el proyecto:
 
 ```bash
-$> npm install --save-dev jest
+$> npm run start
+```
+
+y comprobar la URL: http://localhost:8080
+
+Y para ver que nos genera correctamente los ficheros estáticos, ejecutamos:
+
+```bash
+$> npm run build
+```
+
+y comprobamos que nos genera la carpeta "dist", la cual es buena idea que introduzcamos dentro del fichero .gitignore
+
+```
+node_modules/
+dist/
+```
+
+## Configuración de pruebas automáticas con Jest
+
+A fin de poder ejecutar pruebas automáticas en el proyecto, añadimos la dependencia de Jest junto con su soporte de babel y la librería que permite pruebas con DOM:
+
+```bash
+$> npm install jest babel-jest @testing-library/dom --save-dev
+```
+
+creamos el fichero babel.config.json con el siguiente contenido:
+
+```javascript
+{
+  "presets": ["@babel/preset-env"]
+}
 ```
 
 y el siguiente script al fichero package.json, quedando de esta forma: 
@@ -186,15 +223,14 @@ y el siguiente script al fichero package.json, quedando de esta forma:
     "build": "webpack --config=webpack.prod.js",
     "test": "jest --coverage"
 },
+"jest": {
+    "transform": {
+      "^.+\\.[t|j]sx?$": "babel-jest"
+    }
+  }
 ```
 
-Para poder realizar pruebas automáticas del DOM vamos a integrar la siguiente librería:
-
-```bash
-$> npm install --save-dev @testing-library/dom
-```
-
-De forma que podemos ejecutar `npm run test` para lanzar todas las pruebas del proyecto y recoger el informe de cobertura gracias al modificador --coverage.
+De forma que podemos ejecutar `npm run test` para lanzar todas las pruebas del proyecto (cuando las tenga) y recoger el informe de cobertura gracias al modificador --coverage.
 
 ## Configuración de linters
 
@@ -212,7 +248,7 @@ y el siguiente script en el fichero package.json, también vamos a añadir confi
 "scripts": {
     "start": "webpack serve --config=webpack.dev.js",
     "build": "webpack --config=webpack.prod.js",
-    "test": "jest",
+    "test": "jest --coverage",
     "lint": "semistandard --fix"
 },
 "semistandard": {
@@ -231,16 +267,14 @@ y el siguiente script en el fichero package.json, también vamos a añadir confi
 
 Pudiendo ejecutar `npm run lint` para descubrir las violaciones en las reglas de estilo y con el modificador --fix solucionarlas de forma automática.
 
->  Nota: no se comprobarán los ficheros que estén dentro del fichero .gitignore.
+>  Nota: por defecto no se comprobarán los ficheros que estén dentro del fichero .gitignore.
 
 ### Linter de mensajes de commit
 
 Vamos a añadir a nuestro proyecto la dependencia de husky, la cual nos permitirá establecer una serie de hooks de Git que nos permitan verificar que los mensajes de commit cumplen con el standard de Conventional Commits 
 
 ```bash
-$> npm install --save-dev husky
-$> npm install --save-dev @commitlint/cli
-$> npm install --save-dev @commitlint/config-conventional
+$> npm install husky @commitlint/cli @commitlint/config-conventional --save-dev
 ```
 
 Creamos en la raíz del proyecto el directorio .husky y dentro creamos el fichero "commit-msg" con el siguiente contenido para comprobar que el mensaje cumple con el formato de Conventional Commits:
@@ -261,15 +295,25 @@ Y otro llamado "pre-commit" para ejecutar los test antes de hacer un commit:
 npm test
 ```
 
-Y en el fichero package.json incluyo el siguiente script para instalar husky al hacer un prepare del proyecto y añado la siguiente configuración:
+Es muy importante darle permisos de ejecución a todos estos ficheros.
+
+```bash
+$> cd .husky
+$> sudo chmod -R +x *
+$> cd ..
+```
+
+
+
+Y en el fichero package.json incluimos el siguiente script para instalar husky al hacer un prepare del proyecto y añado la siguiente configuración:
 
 ```javascript
 "scripts": {
+    "prepare": "husky install",
     "start": "webpack serve --config=webpack.dev.js",
     "build": "webpack --config=webpack.prod.js",
     "test": "jest",
-    "lint": "semistandard",
-    "prepare": "husky install"
+    "lint": "semistandard"
 },
 "commitlint": {
     "extends": "@commitlint/config-conventional"
@@ -294,5 +338,7 @@ $> npm install
 
 ## Conclusiones
 
-Con estos pasos ya tenemos preparado nuestro proyecto para poder implementar la solución que necesitemos.
+Con estos pasos ya tenemos preparado nuestro proyecto para poder implementar la solución que necesitemos. En caso estar trabajando con Visual Studio Code, es altamente recomendable las siguientes extensiones:
+
+* **Jest Runner**: para poder ejecutar cualquier test case o test suite de forma aislada al resto.
 
